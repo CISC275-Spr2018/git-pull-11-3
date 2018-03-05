@@ -19,7 +19,6 @@ import javax.swing.JPanel;
  * load images for all direction (an image should only be loaded once!!! why?)
  **/
 class View extends JPanel {
-  static boolean isSingleton = true;
 
   final private int width, height, imageWidth, imageHeight;
   private JFrame frame;
@@ -49,12 +48,8 @@ class View extends JPanel {
     this.height=300;
     this.imageWidth=165;
     this.imageHeight=165;
-    if(!View.isSingleton){
-      return;
-    }
-    View.isSingleton=false;
     this.frame = new JFrame();
-    this.frame.getContentPane().add(new View());
+    this.frame.getContentPane().add(this);
     images = new HashMap<OrcImage,BufferedImage[]>();
     for(OrcImage orcImage : OrcImage.values()) { //use an enum to map directions to images
       BufferedImage img = createImage(orcImage);
@@ -96,8 +91,8 @@ class View extends JPanel {
       this.action=OrcImage.FORWARD_SW;
     else if(this.xDir<0 && this.yDir<0)//x-,y-: u+l
       this.action=OrcImage.FORWARD_NW;
-    System.out.println("ACTION SHOULD BE SET HERE: "+this.action);
-    System.out.println(this.picNum+","+this.action);
+    // System.out.println("ACTION SHOULD BE SET HERE: "+this.action);
+    // System.out.println(this.picNum+","+this.action);
     
     this.picNum = (this.picNum + 1) % this.action.frameCount();
     this.frame.getGraphics().drawImage(this.images.get(this.action)[this.picNum],this.x,this.y, Color.gray, this);
