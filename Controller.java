@@ -11,7 +11,7 @@ public class Controller {
 		model = new Model(view.getWidth(), view.getHeight(), view.getImageWidth(), view.getImageHeight());
 	}
 	
-        //run the simulation
+  //run the simulation
 	public void start(){
 		for(int i = 0; i < 5000; i++)
 		{
@@ -20,5 +20,9 @@ public class Controller {
 			//update the view
 			view.update(model.getX(), model.getY(), model.getDirect());
 		}
+	}
+	public static void main(String[] args){
+		Controller c = new Controller();
+		c.start();
 	}
 }
