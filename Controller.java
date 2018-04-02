@@ -1,10 +1,17 @@
+import javax.swing.AbstractAction;
+import javax.swing.Timer;
+import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+
 /**
  * Do not modify this file without permission from your TA.
  **/
 public class Controller {
 
-	private Model model;
-	private View view;
+	private static Model model;
+	private static View view;
+	
+	private final static int DRAWDELAY = 30;
 	
 	public Controller(){
 		view = new View();
@@ -22,7 +29,20 @@ public class Controller {
 		}
 	}
 	public static void main(String[] args){
-		Controller c = new Controller();
-		c.start();
+		
+		Controller.view = new View();
+		Controller.model = new Model(view.getWidth(), view.getHeight(), view.getImageWidth(), view.getImageHeight());
+		
+		EventQueue.invokeLater(new Runnable(){
+			public void run(){
+				Timer t = new Timer(DRAWDELAY, new AbstractAction() {
+					public void actionPerformed(ActionEvent e) {
+						model.updateLocationAndDirection();
+						view.update(model.getX(), model.getY(), model.getDirect());
+					}
+				});
+				t.start();
+			}
+		});
 	}
 }
