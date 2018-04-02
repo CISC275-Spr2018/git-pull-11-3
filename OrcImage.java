@@ -35,15 +35,23 @@ public enum OrcImage {
 	FORWARD_E ("forward_east",10),
 	FORWARD_NE("forward_northeast",10),
 	
-	JUMP_N ("JUMP_north",8),
-	JUMP_NW("JUMP_northwest",8),
-	JUMP_W ("JUMP_west",8),
-	JUMP_SW("JUMP_southwest",8),
-	JUMP_S ("JUMP_south",8),
-	JUMP_SE("JUMP_southeast",8),
-	JUMP_E ("JUMP_east",8),
-	JUMP_NE("JUMP_northeast",8);
+	JUMP_N ("jump_north",8),
+	JUMP_NW("jump_northwest",8),
+	JUMP_W ("jump_west",8),
+	JUMP_SW("jump_southwest",8),
+	JUMP_S ("jump_south",8),
+	JUMP_SE("jump_southeast",8),
+	JUMP_E ("jump_east",8),
+	JUMP_NE("jump_northeast",8),
 	
+	IDLE_N ("idle_north",4),
+	IDLE_NW("idle_northwest",4),
+	IDLE_W ("idle_west",4),
+	IDLE_SW("idle_southwest",4),
+	IDLE_S ("idle_south",4),
+	IDLE_SE("idle_southeast",4),
+	IDLE_E ("idle_east",4),
+	IDLE_NE("idle_northeast",4);
 	
 	private final String path;
 	private final int frameCount;
