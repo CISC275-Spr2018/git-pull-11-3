@@ -11,6 +11,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -48,17 +49,18 @@ public class Animation4Thread extends JFrame {
     	setVisible(true);
     	pack();
     }
-	
+	 
   @SuppressWarnings("serial")
 	private class DrawPanel extends JPanel {
     	int picNum = 0;
-
+    	
 		protected void paintComponent(Graphics g) {
 			super.paintComponent(g);
 			g.setColor(Color.gray);
+			setBackground(Color.gray);
 	    picNum = (picNum + 1) % frameCount;
 	    g.drawImage(pics[picNum], xloc+=xIncr, yloc+=yIncr, Color.gray, this);
-		}
+		} 
 
 		public Dimension getPreferredSize() {
 			return new Dimension(frameStartSize, frameStartSize);
