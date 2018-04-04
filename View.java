@@ -6,8 +6,10 @@ import java.io.IOException;
 import java.util.HashMap;
 
 import javax.imageio.ImageIO;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
 
 /**
  * View: Contains everything about graphics and images
@@ -22,6 +24,7 @@ class View extends JPanel {
 
   final private int width, height, imageWidth, imageHeight;
   private JFrame frame;
+
 
   private OrcImage action;
   private static HashMap<OrcImage, BufferedImage[]> images;
@@ -50,6 +53,11 @@ class View extends JPanel {
     this.imageHeight=165;
     this.frame = new JFrame();
     this.frame.getContentPane().add(this);
+    frame.setVisible(true);
+    JButton button1 = new JButton("Toggle");
+    button1.setSize(20,20);
+    button1.setVisible(true);
+    this.add(button1);
     images = new HashMap<OrcImage,BufferedImage[]>();
     for(OrcImage orcImage : OrcImage.values()) { //use an enum to map directions to images
       BufferedImage img = createImage(orcImage);
@@ -59,8 +67,8 @@ class View extends JPanel {
         //System.out.println(images+","+orcImage+","+pics);
         images.put(orcImage,pics);
     }
+    frame.setSize(100,100);
     this.action = OrcImage.FORWARD_S;
-
     this.frame.setBackground(Color.gray);
     this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.frame.setSize(this.width, this.height);
@@ -93,7 +101,7 @@ class View extends JPanel {
       this.action=OrcImage.FORWARD_NW;
     // System.out.println("ACTION SHOULD BE SET HERE: "+this.action);
     // System.out.println(this.picNum+","+this.action);
-    
+
     this.picNum = (this.picNum + 1) % this.action.frameCount();
     this.frame.getGraphics().drawImage(this.images.get(this.action)[this.picNum],this.x,this.y, Color.gray, this);
     try{
