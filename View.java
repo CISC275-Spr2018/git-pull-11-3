@@ -61,7 +61,7 @@ class View extends JPanel {
     }
     this.action = OrcImage.FORWARD_S;
 
-    this.frame.setBackground(Color.gray);
+//    this.frame.setBackground(Color.gray);
     this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.frame.setSize(this.width, this.height);
     this.frame.setVisible(true);
@@ -78,11 +78,14 @@ class View extends JPanel {
   public int getImageHeight(){
     return this.imageHeight;
   }
-  public void update(int x, int y, int[] dir){
-    this.x = x;
-    this.y = y;
-    this.xDir = dir[0];
-    this.yDir = dir[1];
+  
+  public void update(Model model){
+    this.x = model.getX();
+    this.y = model.getY();
+    this.xDir = model.getDirect()[0];
+    this.yDir = model.getDirect()[1];
+    
+    
     if(this.xDir>0 && this.yDir>0) //x+,y+: d+r
       this.action=OrcImage.FORWARD_SE;
     else if(this.xDir>0 && this.yDir<0)//x+,y-: u+r
@@ -94,12 +97,8 @@ class View extends JPanel {
     // System.out.println("ACTION SHOULD BE SET HERE: "+this.action);
     // System.out.println(this.picNum+","+this.action);
     
+    setBackground(Color.gray);
     this.picNum = (this.picNum + 1) % this.action.frameCount();
     this.frame.getGraphics().drawImage(this.images.get(this.action)[this.picNum],this.x,this.y, Color.gray, this);
-    try{
-      Thread.sleep(100);
-    }catch(InterruptedException e){
-      e.printStackTrace();
-    }
   }
 }
