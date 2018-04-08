@@ -6,13 +6,14 @@ import java.awt.event.ActionEvent;
 /**
  * Do not modify this file without permission from your TA.
  **/
-public class Controller {
 
-	private static Model model;
-	private static View view;
+	public class Controller  {
+
+	public static Model model;
+	public static View view;
 	
 	private final static int DRAWDELAY = 30;
-	
+	private static boolean updateFlag= true;
 	public Controller(){
 		view = new View();
 		model = new Model(view.getWidth(), view.getHeight(), view.getImageWidth(), view.getImageHeight());
@@ -25,9 +26,16 @@ public class Controller {
 			//increment the x and y coordinates, alter direction if necessary
 			model.updateLocationAndDirection();
 			//update the view
-			view.update(model.getX(), model.getY(), model.getDirect());
+			view.update(model);
 		}
 	}
+	public static boolean getupdateFlag(){
+		return updateFlag;
+	}
+	public static void setUpdateFlag(boolean flag){
+		updateFlag=flag;
+	}
+	
 	public static void main(String[] args){
 		
 		Controller.view = new View();
@@ -37,12 +45,18 @@ public class Controller {
 			public void run(){
 				Timer t = new Timer(DRAWDELAY, new AbstractAction() {
 					public void actionPerformed(ActionEvent e) {
+						if (updateFlag){
 						model.updateLocationAndDirection();
-						view.update(model.getX(), model.getY(), model.getDirect());
+						view.update(model);
+						}
+						
+						
 					}
 				});
 				t.start();
 			}
 		});
 	}
+
+	
 }
