@@ -1,62 +1,55 @@
-import javax.swing.AbstractAction;
-import javax.swing.Timer;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
+import javax.swing.JFrame;
+import javax.swing.Timer;
+
 
 /**
  * Do not modify this file without permission from your TA.
  **/
+public class Controller implements ActionListener{
 
-	public class Controller  {
-
-	public static Model model;
-	public static View view;
-	
+	private static Model model;
+	private static View view;
 	private final static int DRAWDELAY = 30;
-	private static boolean updateFlag= true;
+	
+	
 	public Controller(){
 		view = new View();
 		model = new Model(view.getWidth(), view.getHeight(), view.getImageWidth(), view.getImageHeight());
+		
+		Timer t = new Timer(DRAWDELAY, this);
+		t.start();
 	}
 	
-  //run the simulation
-	public void start(){
-		for(int i = 0; i < 5000; i++)
-		{
-			//increment the x and y coordinates, alter direction if necessary
-			model.updateLocationAndDirection();
-			//update the view
-			view.update(model);
-		}
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		model.updateLocationAndDirection();
+		view.update(model);  
 	}
-	public static boolean getupdateFlag(){
-		return updateFlag;
-	}
-	public static void setUpdateFlag(boolean flag){
-		updateFlag=flag;
-	}
-	
+	 
 	public static void main(String[] args){
-		
-		Controller.view = new View();
-		Controller.model = new Model(view.getWidth(), view.getHeight(), view.getImageWidth(), view.getImageHeight());
-		
 		EventQueue.invokeLater(new Runnable(){
 			public void run(){
-				Timer t = new Timer(DRAWDELAY, new AbstractAction() {
-					public void actionPerformed(ActionEvent e) {
-						if (updateFlag){
-						model.updateLocationAndDirection();
-						view.update(model);
-						}
-						
-						
-					}
+				JFrame j1 = new JFrame();
+				new Controller();
+				view.addKeyListener(new KeyAdapter(){
+					@Override
+			        public void keyPressed(KeyEvent e) {
+			            model.keyPressed(e);
+			        }
+			        @Override
+			        public void keyReleased(KeyEvent e) {
+			            model.keyReleased(e);
+			        } 
 				});
-				t.start();
+				j1.add(view);
+				j1.setVisible(true);
 			}
 		});
 	}
-
-	
 }

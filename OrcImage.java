@@ -10,13 +10,13 @@ public enum OrcImage {
 	 * 
 	 * Later, I can add imgWidth and imgHeight to these so that different 
 	 * poses(for instance) can have different base image sizes.
-	*/
-	
+	 */
+
 	DIE_N ("die_north",7),
 	DIE_W ("die_west", 7),
 	DIE_S ("die_south",7),
 	DIE_E ("die_east", 7),
-	
+
 	FIRE_N ("fire_north",4),
 	FIRE_NW("fire_northwest",4),
 	FIRE_W ("fire_west",4),
@@ -25,7 +25,7 @@ public enum OrcImage {
 	FIRE_SE("fire_southeast",4),
 	FIRE_E ("fire_east",4),
 	FIRE_NE("fire_northeast",4),
-	
+
 	FORWARD_N ("forward_north",10),
 	FORWARD_NW("forward_northwest",10),
 	FORWARD_W ("forward_west",10),
@@ -34,7 +34,7 @@ public enum OrcImage {
 	FORWARD_SE("forward_southeast",10),
 	FORWARD_E ("forward_east",10),
 	FORWARD_NE("forward_northeast",10),
-	
+
 	JUMP_N ("jump_north",8),
 	JUMP_NW("jump_northwest",8),
 	JUMP_W ("jump_west",8),
@@ -43,7 +43,7 @@ public enum OrcImage {
 	JUMP_SE("jump_southeast",8),
 	JUMP_E ("jump_east",8),
 	JUMP_NE("jump_northeast",8),
-	
+
 	IDLE_N ("idle_north",4),
 	IDLE_NW("idle_northwest",4),
 	IDLE_W ("idle_west",4),
@@ -52,12 +52,12 @@ public enum OrcImage {
 	IDLE_SE("idle_southeast",4),
 	IDLE_E ("idle_east",4),
 	IDLE_NE("idle_northeast",4);
-	
+
 	private final String path;
 	private final int frameCount;
-	
+
 	OrcImage(String path, int frameCount){
-		this.path="images/orc/orc_"+path+".png";
+		this.path="spring-2018-275-lab-7-11-3/images/orc/orc_"+path+".png";
 		this.frameCount = frameCount;
 	}
 	public String path() { //returns the path to the respective orc image
