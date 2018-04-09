@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.HashMap;
 
 import javax.imageio.ImageIO;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 
 import javax.swing.JPanel;
@@ -22,6 +23,7 @@ import javax.swing.JPanel;
 class View extends JPanel {
 
 	final private int width, height, imageWidth, imageHeight;
+	public JButton button;
 	private JFrame frame;
 
 
@@ -45,7 +47,7 @@ class View extends JPanel {
 		return null;
 		// TODO: Change this method so you can load other orc animation bitmaps
 	}
-	View(){
+	View(JButton button){
 		setFocusable(true); // necessary to take key inputs
 		
 		this.width=500;
@@ -53,8 +55,9 @@ class View extends JPanel {
 		this.imageWidth=165;
 		this.imageHeight=165;
 		this.frame = new JFrame();
-		this.frame.getContentPane().add(this);
-		frame.setVisible(true);
+		this.frame.add(this);
+		this.button = button;
+		this.add(this.button);
 		
 		
 		
@@ -67,7 +70,7 @@ class View extends JPanel {
 			//System.out.println(images+","+orcImage+","+pics);
 			images.put(orcImage,pics);
 		}
-		frame.setSize(100,100);
+		//this.frame.setSize(100,100);
 		this.action = OrcImage.FORWARD_S;
 		this.frame.setBackground(Color.gray);
 		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -88,6 +91,8 @@ class View extends JPanel {
 	}
 
 	public void update(Model model){
+		this.removeAll();
+		//this.frame.getGraphics().clearRect(0, 0, (int)this.getSize().getWidth(), (int)this.getSize().getHeight());
 		this.x = model.getX();
 		this.y = model.getY();
 		this.xDir = model.getDirect()[0];
@@ -102,11 +107,23 @@ class View extends JPanel {
 			this.action=OrcImage.FORWARD_SW;
 		else if(this.xDir<0 && this.yDir<0)//x-,y-: u+l
 			this.action=OrcImage.FORWARD_NW;
+		
+		if(!model.isMoving())
+			switch(this.action) {
+				case FORWARD_SE: this.action=OrcImage.IDLE_SE; break;
+				case FORWARD_NE: this.action=OrcImage.IDLE_NE; break;
+				case FORWARD_SW: this.action=OrcImage.IDLE_SW; break;
+				case FORWARD_NW: this.action=OrcImage.IDLE_NW; break;
+			}
+		
 		// System.out.println("ACTION SHOULD BE SET HERE: "+this.action);
 		// System.out.println(this.picNum+","+this.action);
 
 		setBackground(Color.gray);
 		this.picNum = (this.picNum + 1) % this.action.frameCount();
-		this.frame.getGraphics().drawImage(this.images.get(this.action)[this.picNum],this.x,this.y, Color.gray, this);
+		this.frame.getGraphics().drawImage(this.images.get(this.action)[this.picNum],this.x,this.y,Color.gray, this);
+		this.add(this.button);
+		this.button.setVisible(true);
+		this.button.repaint();
 	}
 }
