@@ -57,7 +57,7 @@ public enum OrcImage {
 	private final int frameCount;
 
 	OrcImage(String path, int frameCount){
-		this.path="spring-2018-275-lab-7-11-3/images/orc/orc_"+path+".png";
+		this.path="images/orc/orc_"+path+".png";
 		this.frameCount = frameCount;
 	}
 	public String path() { //returns the path to the respective orc image

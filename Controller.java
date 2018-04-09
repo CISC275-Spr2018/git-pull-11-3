@@ -26,7 +26,7 @@ public class Controller implements ActionListener{
 		t.start();
 	}
 	
-	@Override
+	//the timer calls this method after each DRAWDELAY
 	public void actionPerformed(ActionEvent e) {
 		model.updateLocationAndDirection();
 		view.update(model);  
@@ -37,7 +37,7 @@ public class Controller implements ActionListener{
 			public void run(){
 				JFrame j1 = new JFrame();
 				new Controller();
-				view.addKeyListener(new KeyAdapter(){
+				view.addKeyListener(new KeyAdapter(){ //this must be added for key inputs to work
 					@Override
 			        public void keyPressed(KeyEvent e) {
 			            model.keyPressed(e);

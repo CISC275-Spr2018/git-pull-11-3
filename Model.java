@@ -36,11 +36,8 @@ class Model {
 		int[] dir = {this.xDir, this.yDir};
 		return dir;
 	}
-	public void setDirect(int[] dir){
-		xDir = dir[0];
-		yDir = dir[1];
-	}
 	
+	//updates direction based on key pressed
 	public void keyPressed(KeyEvent e) {
 
 		int key = e.getKeyCode();
@@ -62,7 +59,8 @@ class Model {
 			yDir = 1;
 		}
 	}
-
+	
+	//In the future this can make the image stop moving when the keys are released
 	public void keyReleased(KeyEvent e) {
 
 		int key = e.getKeyCode();

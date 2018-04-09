@@ -47,7 +47,7 @@ class View extends JPanel {
 		// TODO: Change this method so you can load other orc animation bitmaps
 	}
 	View(){
-		setFocusable(true); // This line is NECESSARY to take key inputs
+		setFocusable(true); // necessary to take key inputs
 		
 		this.width=500;
 		this.height=300;
