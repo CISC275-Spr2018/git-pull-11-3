@@ -14,7 +14,7 @@ class Model {
   private int x=0;
   private int y=0;
   private int xDir = 1;
-  private int yDir = 1;
+  private int yDir = 0;
   private final int xIncr = 8;
   private final int yIncr = 2;
 
@@ -33,6 +33,12 @@ class Model {
   public int[] getDirect(){
     int[] dir = {this.xDir, this.yDir};
     return dir;
+  }
+  public int getxIncr() {
+	  return xIncr;
+  }
+  public int getyIncr() {
+	  return yIncr;
   }
 
 

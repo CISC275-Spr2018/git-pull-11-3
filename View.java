@@ -28,6 +28,7 @@ class View extends JPanel {
 
   private OrcImage action;
   private static HashMap<OrcImage, BufferedImage[]> images;
+  private JButton button1 = new JButton("Toggle");
 
   private int x, y, xDir, yDir; //need global state attribute information for the repaint method
 
@@ -53,11 +54,9 @@ class View extends JPanel {
     this.imageHeight=165;
     this.frame = new JFrame();
     this.frame.getContentPane().add(this);
-    frame.setVisible(true);
-    JButton button1 = new JButton("Toggle");
     button1.setSize(20,20);
     button1.setVisible(true);
-    this.add(button1);
+    frame.setVisible(true);
     images = new HashMap<OrcImage,BufferedImage[]>();
     for(OrcImage orcImage : OrcImage.values()) { //use an enum to map directions to images
       BufferedImage img = createImage(orcImage);
@@ -68,7 +67,7 @@ class View extends JPanel {
         images.put(orcImage,pics);
     }
     frame.setSize(100,100);
-    this.action = OrcImage.FORWARD_S;
+    this.action = OrcImage.FORWARD_E;
     this.frame.setBackground(Color.gray);
     this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.frame.setSize(this.width, this.height);
@@ -105,8 +104,11 @@ class View extends JPanel {
     // System.out.println("ACTION SHOULD BE SET HERE: "+this.action);
     // System.out.println(this.picNum+","+this.action);
     
+    //this.frame.getGraphics().
+    this.frame.getGraphics().clearRect(0, 0, (int)this.getSize().getWidth(), (int)this.getSize().getHeight());
     setBackground(Color.gray);
+    this.add(button1);
     this.picNum = (this.picNum + 1) % this.action.frameCount();
-    this.frame.getGraphics().drawImage(this.images.get(this.action)[this.picNum],this.x,this.y, Color.gray, this);
+    this.frame.getGraphics().drawImage(this.images.get(this.action)[this.picNum],this.x,this.y, this);
   }
 }

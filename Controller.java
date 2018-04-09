@@ -11,7 +11,7 @@ public class Controller {
 	private static Model model;
 	private static View view;
 	
-	private final static int DRAWDELAY = 30;
+	private final static int DRAWDELAY = 50;
 	
 	public Controller(){
 		view = new View();
@@ -25,7 +25,6 @@ public class Controller {
 			//increment the x and y coordinates, alter direction if necessary
 			model.updateLocationAndDirection();
 			//update the view
-			view.update(model.getX(), model.getY(), model.getDirect());
 		}
 	}
 	public static void main(String[] args){
@@ -38,7 +37,7 @@ public class Controller {
 				Timer t = new Timer(DRAWDELAY, new AbstractAction() {
 					public void actionPerformed(ActionEvent e) {
 						model.updateLocationAndDirection();
-						view.update(model.getX(), model.getY(), model.getDirect());
+						view.update(model);
 					}
 				});
 				t.start();
