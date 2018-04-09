@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.util.HashMap;
 
 import javax.imageio.ImageIO;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 
 import javax.swing.JPanel;
@@ -56,10 +55,9 @@ class View extends JPanel {
 		this.frame = new JFrame();
 		this.frame.getContentPane().add(this);
 		frame.setVisible(true);
-		JButton button1 = new JButton("Toggle");
-		button1.setSize(20,20);
-		button1.setVisible(true);
-		this.add(button1);
+		
+		
+		
 		images = new HashMap<OrcImage,BufferedImage[]>();
 		for(OrcImage orcImage : OrcImage.values()) { //use an enum to map directions to images
 			BufferedImage img = createImage(orcImage);
