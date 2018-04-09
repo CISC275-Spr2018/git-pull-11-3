@@ -1,3 +1,4 @@
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 /**
@@ -11,7 +12,7 @@ import java.awt.event.KeyEvent;
  * provide location
  **/
 
-class Model {
+class Model extends KeyAdapter{
 	private int width, height, imageWidth, imageHeight;
 	private int x=0;
 	private int y=0;
@@ -19,6 +20,7 @@ class Model {
 	private int yDir = 1;
 	private final int xIncr = 8;
 	private final int yIncr = 2;
+	private boolean isMoving = true;
 
 	Model(int width, int height, int imageWidth, int imageHeight){
 		this.width = width;
@@ -36,8 +38,15 @@ class Model {
 		int[] dir = {this.xDir, this.yDir};
 		return dir;
 	}
+	public boolean isMoving() {
+		return isMoving;
+	}
+	public void toggleMoving() {
+		this.isMoving = !this.isMoving;
+	}
 	
 	//updates direction based on key pressed
+	@Override
 	public void keyPressed(KeyEvent e) {
 
 		int key = e.getKeyCode();
@@ -51,7 +60,6 @@ class Model {
 		}
 
 		if (key == KeyEvent.VK_UP) {
-			System.out.println("Up");
 			yDir = -1;
 		}
 
@@ -61,6 +69,7 @@ class Model {
 	}
 	
 	//In the future this can make the image stop moving when the keys are released
+	@Override
 	public void keyReleased(KeyEvent e) {
 
 		int key = e.getKeyCode();
@@ -76,6 +85,7 @@ class Model {
 	}
 
 	public void updateLocationAndDirection(){
+		if(!isMoving) return;
 		if((this.getX()+this.imageWidth>this.width) || this.getX()<0)
 			this.xDir *= -1;
 		if((this.getY()+this.imageHeight>this.height) || this.getY()<0)
