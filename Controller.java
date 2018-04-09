@@ -17,23 +17,19 @@ public class Controller implements ActionListener{
 
 	private static Model model;
 	private static View view;
-	private final static int DRAWDELAY = 30;
+	private final static int DRAWDELAY = 50;
 	private static boolean updateFlag= true;
 	JButton button = new JButton("Toggle");
 	
 	
 	public Controller(){
-		view = new View();
-		model = new Model(view.getWidth(), view.getHeight(), view.getImageWidth(), view.getImageHeight());
-		
 		button.setSize(20,20);
-		button.setVisible(true);	
-		button.addActionListener(new AbstractAction(){
-			public void actionPerformed(ActionEvent e) {
-				updateFlag = !updateFlag;
-			}
-		});
-		view.add(button);
+		//button.addActionListener(new ButtonClickHandler(model));
+		
+		view = new View(button);
+		model = new Model(view.getWidth(), view.getHeight(), view.getImageWidth(), view.getImageHeight());
+		view.button.addActionListener(new ButtonClickHandler(model));
+		
 		
 		Timer t = new Timer(DRAWDELAY, this);
 		t.start();
@@ -53,16 +49,7 @@ public class Controller implements ActionListener{
 			public void run(){
 				
 				new Controller();
-				view.addKeyListener(new KeyAdapter(){ //this must be added for key inputs to work
-					@Override
-			        public void keyPressed(KeyEvent e) {
-			            model.keyPressed(e);
-			        }
-			        @Override
-			        public void keyReleased(KeyEvent e) {
-			            model.keyReleased(e);
-			        } 
-				});
+				view.addKeyListener(model);
 				view.setVisible(true);
 			}
 		});
