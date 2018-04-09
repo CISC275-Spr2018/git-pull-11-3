@@ -10,29 +10,8 @@ Next, we needed to handle key-board input to change the direction of the orc. We
 
 ## Contributions:
 
-This information can be confirmed via the commit-log.
+Refer to the pull-requests. Make sure to show closed pull requests as well.
 
-Dan Hinrichs: 
-  * Explored issues related to View update method and visual artifacting (specifically keeping the background grey)
-  * Contributed code to add the Button to the view
-
-Evan Caplan:
-  * Created the Button action listener
-  * Contributed code that led to the button action listener logic altering the model
-
-Greg White:
-  * Contributed code towards the key-board control logic
-  * Added some documentation towards understanding the MVC/event-based model
-
-Riley Shaw:
-  * Polished up the view update loop
-  * Small restructuring the increase actionListener reliability and performance
-
-Arvin Aya-ay
-  * Made little to no significant contributions to this project.
-  * Worked on his own version; sent (in slack) a .zip file entitled lab7_alternative_solution.zip, I will not provide this .zip in this repo seeing as it is not the work of this group. 
-  >4/7/18 19:47 Arvin-98: I was working on lab 7 and got to this point. Everything should work - a toggle button that stops/starts the orc and direction buttons that set it NE/NW/SE/SW. It's pretty different from how I saw you guys did it, but I think it could serve as good reference. Take a look whenever you get the chance.
- 
 ### Some notes (from Riley)
 
 I worked on tying all of the code together to improve performance and better fit the event/listener model. One of the biggest issues (in general) was handling the view update code. For a while there were a lot of visual quirks; the button would be obscured when the orc image moved over it, the orc would leave a trail of duplicated images. I realized that doing all of the orc and button functions at the top level of the JPanel update method increased the complexity and it was easy to move one line of code that would break everything.
