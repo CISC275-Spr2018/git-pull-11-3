@@ -21,6 +21,10 @@ public class Controller implements ActionListener{
 	private static boolean updateFlag= true;
 	JButton button = new JButton("Toggle");
 	
+	//literally just a clock to count the game ticks
+	//increments every time the model and view are updated
+	private int tick_counter = 0;
+	
 	
 	public Controller(){
 		button.setSize(20,20);
@@ -38,10 +42,9 @@ public class Controller implements ActionListener{
 	
 	//the timer calls this method after each DRAWDELAY
 	public void actionPerformed(ActionEvent e) {
-		if(updateFlag){
-			model.updateLocationAndDirection();
-			view.update(model);  
-		}
+		model.updateLocationAndDirection(tick_counter);
+		view.update(model);
+		tick_counter+=1;
 	}
 	 
 	public static void main(String[] args){
