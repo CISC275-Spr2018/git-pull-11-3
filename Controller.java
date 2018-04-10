@@ -20,6 +20,7 @@ public class Controller implements ActionListener{
 	private final static int DRAWDELAY = 50;
 	private static boolean updateFlag= true;
 	JButton button = new JButton("Toggle");
+	ModelUpdateLogic mul; // Arvin: needed to give the Controller a ModelUpdateLogic 
 	
 	//literally just a clock to count the game ticks
 	//increments every time the model and view are updated
@@ -33,6 +34,7 @@ public class Controller implements ActionListener{
 		view = new View(button);
 		model = new Model(view.getWidth(), view.getHeight(), view.getImageWidth(), view.getImageHeight());
 		view.button.addActionListener(new ButtonClickHandler(model));
+		mul = new ModelUpdateLogic(model); // Arvin: create a new ModelUpdateLogic and give it the Model
 		
 		
 		Timer t = new Timer(DRAWDELAY, this);
@@ -42,7 +44,8 @@ public class Controller implements ActionListener{
 	
 	//the timer calls this method after each DRAWDELAY
 	public void actionPerformed(ActionEvent e) {
-		model.updateLocationAndDirection(tick_counter);
+		//model.updateLocationAndDirection(tick_counter);
+		mul.updateLocationAndDirection(tick_counter); // Arvin: updates called by the ModelUpdateLogic class instead of the Model itself
 		view.update(model);
 		tick_counter+=1;
 	}
