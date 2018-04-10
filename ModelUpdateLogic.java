@@ -23,9 +23,10 @@ public class ModelUpdateLogic {
 		} else {
 			model.setAction(OrcImage.forward(model.getOrcDir()));
 		}
-		if((model.getX()+model.getImageWidth()>model.getImageWidth()) || model.getX()<0)
+		
+		if((model.getX()+model.getImageWidth()>model.getWidth()) || model.getX()<0)
 			model.setXDir(-1);
-		if((model.getY()+model.getImageHeight()>model.getImageHeight()) || model.getY()<0)
+		if((model.getY()+model.getImageHeight()>model.getHeight()) || model.getY()<0)
 			model.setYDir(-1);
 		model.setX(model.getXIncr()*model.getXDir());
 		model.setY(model.getYIncr()*model.getYDir());
