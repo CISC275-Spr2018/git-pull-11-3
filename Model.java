@@ -86,7 +86,7 @@ class Model extends KeyAdapter{
 		this.xDir *= i;
 	}
 	public void setYDir(int i) {
-		this.xDir *= i;
+		this.yDir *= i;
 	}
 	public void setX(int i) {
 		this.x += i;
@@ -102,6 +102,12 @@ class Model extends KeyAdapter{
 	}
 	public boolean getIsJumping() {
 		return this.isJumping;
+	}
+	public int getWidth() {
+		return this.width;
+	}
+	public int getHeight() {
+		return this.height;
 	}
 	
 	//updates direction based on key pressed
