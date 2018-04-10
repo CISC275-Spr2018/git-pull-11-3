@@ -60,6 +60,50 @@ class Model extends KeyAdapter{
 		this.isJumping = !this.isJumping;
 	}
 	
+	// Arvin : added numerous getters and setters
+	public Direction getOrcDir() {
+		return this.orcDir;
+	}
+	public boolean getIsMoving() {
+		return this.isMoving;
+	}
+	public int getImageWidth(){
+		return this.imageWidth;
+	}
+	public int getImageHeight() {
+		return this.imageHeight;
+	}
+	public int getXDir() {
+		return this.xDir;
+	}
+	public int getYDir() {
+		return this.yDir;
+	}
+	public void setOrcDir(Direction d) {
+		this.orcDir = d;
+	}
+	public void setXDir(int i) {
+		this.xDir *= i;
+	}
+	public void setYDir(int i) {
+		this.xDir *= i;
+	}
+	public void setX(int i) {
+		this.x += i;
+	}
+	public void setY(int i) {
+		this.y += i;
+	}
+	public int getXIncr() {
+		return this.xIncr;
+	}
+	public int getYIncr() {
+		return this.yIncr;
+	}
+	public boolean getIsJumping() {
+		return this.isJumping;
+	}
+	
 	//updates direction based on key pressed
 	@Override
 	public void keyPressed(KeyEvent e) {
@@ -104,7 +148,7 @@ class Model extends KeyAdapter{
 	
 	
 	private int jumpStart=-1;
-	public void updateLocationAndDirection(int tick_counter){
+	public void updateLocationAndDirection(int tick_counter){ // move logic out of model into controller
 		//if(!isMoving) return;
 		//jump action needs to pre-empt like everything else...
 		
