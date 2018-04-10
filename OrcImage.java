@@ -66,4 +66,56 @@ public enum OrcImage {
 	public int frameCount() {
 		return this.frameCount;
 	}
+	public static OrcImage forward(Direction dir) {
+		switch(dir) {
+		case NORTH: return OrcImage.FORWARD_N;
+		case NORTHEAST: return OrcImage.FORWARD_NE;
+		case EAST: return OrcImage.FORWARD_E;
+		case SOUTHEAST: return OrcImage.FORWARD_SE;
+		case SOUTH: return OrcImage.FORWARD_S;
+		case SOUTHWEST: return OrcImage.FORWARD_SW;
+		case WEST: return OrcImage.FORWARD_W;
+		case NORTHWEST: return OrcImage.FORWARD_NW;
+		default: return OrcImage.FORWARD_S;
+		}
+	}
+	public static OrcImage idle(Direction dir) {
+		switch(dir) {
+		case NORTH: return OrcImage.IDLE_N;
+		case NORTHEAST: return OrcImage.IDLE_NE;
+		case EAST: return OrcImage.IDLE_E;
+		case SOUTHEAST: return OrcImage.IDLE_SE;
+		case SOUTH: return OrcImage.IDLE_S;
+		case SOUTHWEST: return OrcImage.IDLE_SW;
+		case WEST: return OrcImage.IDLE_W;
+		case NORTHWEST: return OrcImage.IDLE_NW;
+		default: return OrcImage.IDLE_S;
+		}
+	}
+	public static OrcImage jump(Direction dir) {
+		switch(dir) {
+		case NORTH: return OrcImage.JUMP_N;
+		case NORTHEAST: return OrcImage.JUMP_NE;
+		case EAST: return OrcImage.JUMP_E;
+		case SOUTHEAST: return OrcImage.JUMP_SE;
+		case SOUTH: return OrcImage.JUMP_S;
+		case SOUTHWEST: return OrcImage.JUMP_SW;
+		case WEST: return OrcImage.JUMP_W;
+		case NORTHWEST: return OrcImage.JUMP_NW;
+		default: return OrcImage.JUMP_S;
+		}
+	}
+	public static OrcImage fire(Direction dir) {
+		switch(dir) {
+		case NORTH: return OrcImage.FIRE_N;
+		case NORTHEAST: return OrcImage.FIRE_NE;
+		case EAST: return OrcImage.FIRE_E;
+		case SOUTHEAST: return OrcImage.FIRE_SE;
+		case SOUTH: return OrcImage.FIRE_S;
+		case SOUTHWEST: return OrcImage.FIRE_SW;
+		case WEST: return OrcImage.FIRE_W;
+		case NORTHWEST: return OrcImage.FIRE_NW;
+		default: return OrcImage.FIRE_S;
+		}
+	}
 }

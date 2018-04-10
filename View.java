@@ -28,6 +28,7 @@ class View extends JPanel {
 
 
 	private OrcImage action;
+	private OrcImage prevAction;
 	private static HashMap<OrcImage, BufferedImage[]> images;
 
 	private int x, y, xDir, yDir; //need global state attribute information for the repaint method
@@ -92,32 +93,13 @@ class View extends JPanel {
 
 	public void update(Model model){
 		this.removeAll();
-		//this.frame.getGraphics().clearRect(0, 0, (int)this.getSize().getWidth(), (int)this.getSize().getHeight());
+		this.action = model.getAction();
 		this.x = model.getX();
 		this.y = model.getY();
-		this.xDir = model.getDirect()[0];
-		this.yDir = model.getDirect()[1];
 
-
-		if(this.xDir>0 && this.yDir>0) //x+,y+: d+r
-			this.action=OrcImage.FORWARD_SE;
-		else if(this.xDir>0 && this.yDir<0)//x+,y-: u+r
-			this.action=OrcImage.FORWARD_NE;
-		else if(this.xDir<0 && this.yDir>0)//x-,y+: d+l
-			this.action=OrcImage.FORWARD_SW;
-		else if(this.xDir<0 && this.yDir<0)//x-,y-: u+l
-			this.action=OrcImage.FORWARD_NW;
-		
-		if(!model.isMoving())
-			switch(this.action) {
-				case FORWARD_SE: this.action=OrcImage.IDLE_SE; break;
-				case FORWARD_NE: this.action=OrcImage.IDLE_NE; break;
-				case FORWARD_SW: this.action=OrcImage.IDLE_SW; break;
-				case FORWARD_NW: this.action=OrcImage.IDLE_NW; break;
-			}
-		
-		// System.out.println("ACTION SHOULD BE SET HERE: "+this.action);
-		// System.out.println(this.picNum+","+this.action);
+		if(this.action!=this.prevAction && this.picNum!=0) { //if there is a new action to perform
+			picNum=0;//reset the animation
+		}
 
 		setBackground(Color.gray);
 		this.picNum = (this.picNum + 1) % this.action.frameCount();
@@ -125,5 +107,6 @@ class View extends JPanel {
 		this.add(this.button);
 		this.button.setVisible(true);
 		this.button.repaint();
+		this.prevAction = this.action;
 	}
 }
