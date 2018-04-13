@@ -13,6 +13,7 @@ public class ModelUpdateLogic {
 	}
 	
 	private int jumpStart=-1;
+	private int fireStart=-1;
 	public void updateLocationAndDirection(int tick_counter){ // move logic out of model into controller
 		//if(!isMoving) return;
 		//jump action needs to pre-empt like everything else...
@@ -49,6 +50,17 @@ public class ModelUpdateLogic {
 				model.toggleJumping(); //toggle the animation flag
 				jumpStart=-1; // reset the animation timer
 			}
+		}
+		
+		if(model.getIsFire()) { // Arvin : moved Dan's fire update code from Model into ModelUpdateLogic
+			model.setAction(OrcImage.fire(model.getOrcDir()));
+			if(fireStart<0) {
+				fireStart=tick_counter;
+			}
+			if(tick_counter >= fireStart+model.getAction().frameCount()) {
+				model.toggleFire();
+				fireStart=-1;
+			}		
 		}
 		
 	}

@@ -24,6 +24,7 @@ class Model extends KeyAdapter{
 	private boolean isJumping = false;
 	private OrcImage action = OrcImage.IDLE_S;
 	private Direction orcDir = Direction.SOUTHEAST;
+	private boolean isFire;
 
 	Model(int width, int height, int imageWidth, int imageHeight){
 		this.width = width;
@@ -109,6 +110,9 @@ class Model extends KeyAdapter{
 	public int getHeight() {
 		return this.height;
 	}
+	public boolean getIsFire() {
+		return isFire;
+	}
 	
 	//updates direction based on key pressed
 	@Override
@@ -134,6 +138,9 @@ class Model extends KeyAdapter{
 		if (key == KeyEvent.VK_J) {
 			isJumping = true;
 		}
+		if(key == KeyEvent.VK_F) {
+			isFire = true;
+		}
 	}
 	
 	//In the future this can make the image stop moving when the keys are released
@@ -152,7 +159,12 @@ class Model extends KeyAdapter{
 		}
 	}
 	
+	public void toggleFire() {
+		this.isFire = !this.isFire;
+	}
 	
+	/*
+	 * All logic goes in ModelUpdateLogic class now
 	private int jumpStart=-1;
 	public void updateLocationAndDirection(int tick_counter){ // move logic out of model into controller
 		//if(!isMoving) return;
@@ -192,4 +204,5 @@ class Model extends KeyAdapter{
 		}
 		
 	}
+	*/
 }
