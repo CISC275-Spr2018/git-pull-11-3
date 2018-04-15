@@ -18,8 +18,8 @@ class Model extends KeyAdapter{
 	private int y=0;
 	private int xDir = 1;
 	private int yDir = 1;
-	private final int xIncr = 8;
-	private final int yIncr = 2;
+	private int xIncr = 8;
+	private int yIncr = 2;
 	private boolean isMoving = true;
 	private boolean isJumping = false;
 	private OrcImage action = OrcImage.IDLE_S;
@@ -100,6 +100,12 @@ class Model extends KeyAdapter{
 	}
 	public int getYIncr() {
 		return this.yIncr;
+	}
+	public void setXIncr(int i) {
+		this.xIncr = i;
+	}
+	public void setYIncr(int i) {
+		this.yIncr = i;
 	}
 	public boolean getIsJumping() {
 		return this.isJumping;

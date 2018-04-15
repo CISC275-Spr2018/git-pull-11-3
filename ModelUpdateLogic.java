@@ -54,12 +54,16 @@ public class ModelUpdateLogic {
 		
 		if(model.getIsFire()) { // Arvin : moved Dan's fire update code from Model into ModelUpdateLogic
 			model.setAction(OrcImage.fire(model.getOrcDir()));
+			model.setXIncr(0);
+			model.setYIncr(0);
 			if(fireStart<0) {
 				fireStart=tick_counter;
 			}
 			if(tick_counter >= fireStart+model.getAction().frameCount()) {
 				model.toggleFire();
 				fireStart=-1;
+				model.setXIncr(8);
+				model.setYIncr(2);
 			}		
 		}
 		
