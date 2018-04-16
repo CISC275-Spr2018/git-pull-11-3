@@ -4,15 +4,14 @@ class Model {
 		private int y=0;
 		private int xDir = 1;
 		private int yDir = 1;
-		private final int xIncr = 8;
-		private final int yIncr = 2;
+		private int xIncr = 8;
+		private int yIncr = 2;
 		private boolean isMoving = true;
 		private boolean isJumping = false;
 		private OrcImage action = OrcImage.IDLE_S;
 		private Direction orcDir = Direction.SOUTHEAST;
 		private boolean isFire;
 
-		
 		Model(int width, int height, int imageWidth, int imageHeight){
 			this.width = width;
 			this.height = height;
@@ -109,6 +108,12 @@ class Model {
 		
 		public void toggleFire() {
 			this.isFire = !this.isFire;
+		}
+		public void setXIncr(int i){
+			this.xIncr=i;
+		}
+		public void setYIncr(int i){
+			this.yIncr=i;
 		}
 		
 		/*
