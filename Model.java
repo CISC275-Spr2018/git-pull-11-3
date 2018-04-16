@@ -13,6 +13,12 @@ class Model {
 		private boolean isFire;
 
 		}
+		Model(int width, int height, int imageWidth, int imageHeight){
+			this.width = width;
+			this.height = height;
+			this.imageWidth = imageWidth;
+			this.imageHeight = imageHeight;
+		}
 		public int getX(){
 			return this.x;
 		}
